@@ -28,6 +28,11 @@
 #include "bricklib/drivers/board/sam3s/SAM3S.h"
 #include "current.h"
 
+#define BRICKLET_HARDWARE_NAME "Current25 Bricklet 1.0"
+#define BRICKLET_FIRMWARE_VERSION_MAJOR 1
+#define BRICKLET_FIRMWARE_VERSION_MINOR 0
+#define BRICKLET_FIRMWARE_VERSION_REVISION 0
+
 #define BOARD_MCK 64000000 // Frequency of brick
 
 #define LOGGING_LEVEL LOGGING_DEBUG
