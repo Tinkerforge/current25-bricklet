@@ -172,24 +172,26 @@ int32_t current_from_analog_value(int32_t value) {
 	return BC->current_avg;
 }
 
-void tick(void) {
-	if(PIN_OVER_CURRENT.pio->PIO_PDSR & PIN_OVER_CURRENT.mask) {
-		BC->over_current = false;
-	} else {
-		if(!BC->over_current) {
-			logbli("Over Current");
-			BC->over_current = true;
+void tick(uint8_t tick_type) {
+	if(tick_type & TICK_TASK_TYPE_MESSAGE) {
+		if(PIN_OVER_CURRENT.pio->PIO_PDSR & PIN_OVER_CURRENT.mask) {
+			BC->over_current = false;
+		} else {
+			if(!BC->over_current) {
+				logbli("Over Current");
+				BC->over_current = true;
 
-			StandardMessage sm = {
-				BS->stack_id,
-				TYPE_OVER_CURRENT,
-				sizeof(StandardMessage),
-			};
-			BA->send_blocking_with_timeout(&sm,
-										   sizeof(StandardMessage),
-										   *BA->com_current);
+				StandardMessage sm = {
+					BS->stack_id,
+					TYPE_OVER_CURRENT,
+					sizeof(StandardMessage),
+				};
+				BA->send_blocking_with_timeout(&sm,
+											   sizeof(StandardMessage),
+											   *BA->com_current);
+			}
 		}
 	}
 
-	simple_tick();
+	simple_tick(tick_type);
 }
