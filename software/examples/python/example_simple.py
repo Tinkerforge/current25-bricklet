@@ -9,10 +9,10 @@ from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_current25 import Current25
 
 if __name__ == "__main__":
-    ipcon = IPConnection(HOST, PORT) # Create ip connection to brickd
+    ipcon = IPConnection(HOST, PORT) # Create IP connection to brickd
 
     c = Current25(UID) # Create device object
-    ipcon.add_device(c) # Add device to ip connection
+    ipcon.add_device(c) # Add device to IP connection
     # Don't use device before it is added to a connection
 
     # Get current current (unit is mA)

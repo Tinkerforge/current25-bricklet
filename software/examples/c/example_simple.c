@@ -9,7 +9,7 @@
 #define UID "ABCD" // Change to your UID
 
 int main() {
-	// Create ip connection to brickd
+	// Create IP connection to brickd
 	IPConnection ipcon;
 	if(ipcon_create(&ipcon, HOST, PORT) < 0) {
 		fprintf(stderr, "Could not create connection\n");
@@ -20,7 +20,7 @@ int main() {
 	Current25 c;
 	current25_create(&c, UID); 
 
-	// Add device to ip connection
+	// Add device to IP connection
 	if(ipcon_add_device(&ipcon, &c) < 0) {
 		fprintf(stderr, "Could not connect to Brick\n");
 		exit(1);
@@ -37,5 +37,5 @@ int main() {
 	printf("Current: %f A\n", current/1000.0);
 
 	printf("Press ctrl+c to close\n");
-	ipcon_join_thread(&ipcon); // Join mainloop of ip connection
+	ipcon_join_thread(&ipcon); // Join mainloop of IP connection
 }

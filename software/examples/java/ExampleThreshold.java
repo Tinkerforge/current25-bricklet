@@ -11,13 +11,11 @@ public class ExampleThreshold {
 	public static void main(String args[]) throws Exception {
 		// Create connection to brickd
 		IPConnection ipcon = new IPConnection(host, port); // Can throw IOException
-
 		BrickletCurrent25 c25 = new BrickletCurrent25(UID); // Create device object
 
-		// Add device to ip connection
+		// Add device to IP connection
 		ipcon.addDevice(c25); // Can throw IPConnection.TimeoutException
 		// Don't use device before it is added to a connection
-		
 
 		// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 		c25.setDebouncePeriod(10000);
@@ -31,7 +29,7 @@ public class ExampleThreshold {
 				System.out.println("Current is greater than 5A: " + current/1000.0);
 			}
 		});
-		
+
 		System.out.println("Press ctrl+c to exit");
 		ipcon.joinThread();
 	}

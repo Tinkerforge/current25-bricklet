@@ -13,10 +13,10 @@ def cb_current(current):
     print('Current: ' + str(current/1000.0) + ' A')
 
 if __name__ == "__main__":
-    ipcon = IPConnection(HOST, PORT) # Create ip connection to brickd
+    ipcon = IPConnection(HOST, PORT) # Create IP connection to brickd
 
     c = Current25(UID) # Create device object
-    ipcon.add_device(c) # Add device to ip connection
+    ipcon.add_device(c) # Add device to IP connection
     # Don't use device before it is added to a connection
 
     # Set Period for current callback to 1s (1000ms)

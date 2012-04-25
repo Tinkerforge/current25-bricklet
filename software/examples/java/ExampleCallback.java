@@ -11,13 +11,11 @@ public class ExampleCallback {
 	public static void main(String args[]) throws Exception {
 		// Create connection to brickd
 		IPConnection ipcon = new IPConnection(host, port); // Can throw IOException
-
 		BrickletCurrent25 c25 = new BrickletCurrent25(UID); // Create device object
 
-		// Add device to ip connection
+		// Add device to IP connection
 		ipcon.addDevice(c25); // Can throw IPConnection.TimeoutException
 		// Don't use device before it is added to a connection
-		
 
 		// Set Period for current callback to 1s (1000ms)
 		// Note: The current callback is only called every second if the 
@@ -30,7 +28,7 @@ public class ExampleCallback {
 				System.out.println("Current: " + current/1000.0 + " A");
 			}
 		});
-		
+
 		System.out.println("Press ctrl+c to exit");
 		ipcon.joinThread();
 	}
