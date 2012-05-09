@@ -14,8 +14,7 @@ class Example
 		// Don't use device before it is added to a connection
 
 		// Get current current (unit is mA)
-		short current;
-		c25.GetCurrent(out current);
+		short current = c25.GetCurrent();
 
 		System.Console.WriteLine("Current: " + current/1000.0 + " A");
 
