@@ -19,7 +19,7 @@ ipcon.add_device c # Add device to IP connection
 c.set_debounce_period 10000
 
 # Register threshold reached callback for "greater than 5A" (unit is mA)
-c.register_callback BrickletCurrent25::CALLBACK_CURRENT_REACHED, do |current|
+c.register_callback(BrickletCurrent25::CALLBACK_CURRENT_REACHED) do |current|
   puts "Current is greater than 5A: #{current/1000.0}"
 end
 

@@ -21,7 +21,7 @@ ipcon.add_device c # Add device to IP connection
 c.set_current_callback_period 1000
 
 # Register current callback (parameter has unit mA)
-c.register_callback BrickletCurrent25::CALLBACK_CURRENT, do |current|
+c.register_callback(BrickletCurrent25::CALLBACK_CURRENT) do |current|
   puts "Current: #{current/1000.0} A"
 end
 
