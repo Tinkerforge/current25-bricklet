@@ -40,6 +40,7 @@ int main() {
 	// Register current callback to function cb_current
 	current25_register_callback(&c, CURRENT25_CALLBACK_CURRENT, cb_current);
 
-	printf("Press ctrl+c to close\n");
-	ipcon_join_thread(&ipcon); // Join mainloop of IP connection
+	printf("Press key to exit\n");
+	getchar();
+	ipcon_destroy(&ipcon);
 }

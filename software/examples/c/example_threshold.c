@@ -32,18 +32,18 @@ int main() {
 	}
 	// Don't use device before it is added to a connection
 
+	// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
+	current25_set_debounce_period(&c, 10000);
 
-    // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
-    current25_set_debounce_period(&c, 10000);
-
-    // Register threshold reached callback to function cb_reached
-    current25_register_callback(&c, 
+	// Register threshold reached callback to function cb_reached
+	current25_register_callback(&c,
 	                            CURRENT25_CALLBACK_CURRENT_REACHED,
-								cb_reached);
-	
-    // Configure threshold for "greater than 5A" (unit is mA)
-    current25_set_current_callback_threshold(&c, '>', 5*1000, 0);
+	                            cb_reached);
 
-	printf("Press ctrl+c to close\n");
-	ipcon_join_thread(&ipcon); // Join mainloop of IP connection
+	// Configure threshold for "greater than 5A" (unit is mA)
+	current25_set_current_callback_threshold(&c, '>', 5*1000, 0);
+
+	printf("Press key to exit\n");
+	getchar();
+	ipcon_destroy(&ipcon);
 }

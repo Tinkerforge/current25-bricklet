@@ -28,7 +28,8 @@ class Example
 		// Configure threshold for "greater than 5A" (unit is mA)
 		c25.SetCurrentCallbackThreshold('>', 5*1000, 0);
 
-		System.Console.WriteLine("Press ctrl+c to exit");
-		ipcon.JoinThread();
+		System.Console.WriteLine("Press key to exit");
+		System.Console.ReadKey();
+		ipcon.Destroy();
 	}
 }
