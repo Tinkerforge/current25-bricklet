@@ -1,5 +1,5 @@
 /* current-bricklet
- * Copyright (C) 2011 Olaf Lüke <olaf@tinkerforge.com>
+ * Copyright (C) 2011-2012 Olaf Lüke <olaf@tinkerforge.com>
  *
  * current.c: Implementation of Current Bricklet messages
  *
@@ -20,8 +20,6 @@
  */
 
 #include "current.h"
-
-#include <adc/adc.h>
 
 #include "brickletlib/bricklet_entry.h"
 #include "bricklib/bricklet/bricklet_communication.h"
@@ -66,22 +64,34 @@ const SimpleMessageProperty smp[] = {
 };
 
 const SimpleUnitProperty sup[] = {
-	{current_from_analog_value, SIMPLE_SIGNEDNESS_INT, TYPE_CURRENT, TYPE_CURRENT_REACHED, SIMPLE_UNIT_ANALOG_VALUE}, // current
-	{analog_value_from_mc, SIMPLE_SIGNEDNESS_UINT, TYPE_ANALOG_VALUE, TYPE_ANALOG_VALUE_REACHED, SIMPLE_UNIT_ANALOG_VALUE}, // analog value
+	{current_from_analog_value, SIMPLE_SIGNEDNESS_INT, FID_CURRENT, FID_CURRENT_REACHED, SIMPLE_UNIT_ANALOG_VALUE}, // current
+	{analog_value_from_mc, SIMPLE_SIGNEDNESS_UINT, FID_ANALOG_VALUE, FID_ANALOG_VALUE_REACHED, SIMPLE_UNIT_ANALOG_VALUE}, // analog value
 };
 
+const uint8_t smp_length = sizeof(smp);
 
-void invocation(uint8_t com, uint8_t *data) {
-	switch(((SimpleStandardMessage*)data)->type) {
-		case TYPE_IS_OVER_CURRENT:
+
+void invocation(const ComType com, const uint8_t *data) {
+	switch(((SimpleStandardMessage*)data)->header.fid) {
+		case FID_IS_OVER_CURRENT: {
 			is_over_current(com, (StandardMessage*)data);
 			return;
-		case TYPE_CALIBRATE:
+		}
+
+		case FID_CALIBRATE: {
 			calibrate();
 			return;
+		}
+
+		default: {
+			simple_invocation(com, data);
+			break;
+		}
 	}
 
-	simple_invocation(com, data);
+	if(((SimpleStandardMessage*)data)->header.fid > FID_LAST) {
+		BA->com_return_error(data, sizeof(MessageHeader), MESSAGE_ERROR_CODE_NOT_SUPPORTED, com);
+	}
 }
 
 void calibrate(void) {
@@ -102,13 +112,11 @@ void calibrate(void) {
     BA->bricklet_deselect(BS->port - 'a');
 }
 
-void is_over_current(uint8_t com, StandardMessage *sm) {
-	BoolMessage bm = {
-		sm->stack_id,
-		sm->type,
-		sizeof(BoolMessage),
-		PIN_OVER_CURRENT.pio->PIO_PDSR & PIN_OVER_CURRENT.mask
-	};
+void is_over_current(const ComType com, const StandardMessage *sm) {
+	BoolMessage bm;
+	bm.header        = sm->header;
+	bm.header.length = sizeof(BoolMessage);
+	bm.value         = PIN_OVER_CURRENT.pio->PIO_PDSR & PIN_OVER_CURRENT.mask;
 
 	BA->send_blocking_with_timeout(&bm,
 	                               sizeof(BoolMessage),
@@ -147,16 +155,17 @@ void destructor(void) {
 	adc_channel_disable(BS->adc_channel);
 }
 
-int32_t analog_value_from_mc(int32_t value) {
+int32_t analog_value_from_mc(const int32_t value) {
 	return (uint16_t)BA->adc_channel_get_data(BS->adc_channel);
 }
 
-int32_t current_from_analog_value(int32_t value) {
+int32_t current_from_analog_value(const int32_t value) {
+	int32_t new_value = value;
 	if(value > MAX_ADC_VALUE/4 && value < MAX_ADC_VALUE*3/4) {
-		value += BC->offset;
+		new_value += BC->offset;
 	}
 
-	BC->current_avg_sum += value;
+	BC->current_avg_sum += new_value;
 
 	if(BC->tick % CURRENT_AVERAGE == 0) {
 		BC->current_avg = BETWEEN(MIN_CURRENT,
@@ -172,7 +181,7 @@ int32_t current_from_analog_value(int32_t value) {
 	return BC->current_avg;
 }
 
-void tick(uint8_t tick_type) {
+void tick(const uint8_t tick_type) {
 	if(tick_type & TICK_TASK_TYPE_MESSAGE) {
 		if(PIN_OVER_CURRENT.pio->PIO_PDSR & PIN_OVER_CURRENT.mask) {
 			BC->over_current = false;
@@ -181,11 +190,9 @@ void tick(uint8_t tick_type) {
 				logbli("Over Current");
 				BC->over_current = true;
 
-				StandardMessage sm = {
-					BS->stack_id,
-					TYPE_OVER_CURRENT,
-					sizeof(StandardMessage),
-				};
+				StandardMessage sm;
+				BA->com_make_default_header(&sm, BS->uid, sizeof(StandardMessage), FID_OVER_CURRENT);
+
 				BA->send_blocking_with_timeout(&sm,
 											   sizeof(StandardMessage),
 											   *BA->com_current);
