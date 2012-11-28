@@ -13,11 +13,11 @@ def cb_current(current):
     print('Current: ' + str(current/1000.0) + ' A')
 
 if __name__ == "__main__":
-    ipcon = IPConnection(HOST, PORT) # Create IP connection to brickd
+    ipcon = IPConnection() # Create IP connection
+    c = Current25(UID, ipcon) # Create device object
 
-    c = Current25(UID) # Create device object
-    ipcon.add_device(c) # Add device to IP connection
-    # Don't use device before it is added to a connection
+    ipcon.connect(HOST, PORT) # Connect to brickd
+    # Don't use device before ipcon is connected
 
     # Set Period for current callback to 1s (1000ms)
     # Note: The callback is only called every second if the 
@@ -28,4 +28,3 @@ if __name__ == "__main__":
     c.register_callback(c.CALLBACK_CURRENT, cb_current)
 
     raw_input('Press key to exit\n') # Use input() in Python 3
-    ipcon.destroy()
