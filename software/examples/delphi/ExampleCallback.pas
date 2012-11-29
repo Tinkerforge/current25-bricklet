@@ -12,7 +12,7 @@ type
     ipcon: TIPConnection;
     c: TBrickletCurrent25;
   public
-    procedure CurrentCB(const current: smallint);
+    procedure CurrentCB(sender: TObject; const current: smallint);
     procedure Execute;
   end;
 
@@ -25,22 +25,22 @@ var
   e: TExample;
 
 { Callback function for current callback (parameter has unit mA) }
-procedure TExample.CurrentCB(const current: smallint);
+procedure TExample.CurrentCB(sender: TObject; const current: smallint);
 begin
   WriteLn(Format('Current: %f A', [current/1000.0]));
 end;
 
 procedure TExample.Execute;
 begin
-  { Create IP connection to brickd }
-  ipcon := TIPConnection.Create(HOST, PORT);
+  { Create IP connection }
+  ipcon := TIPConnection.Create();
 
   { Create device object }
-  c := TBrickletCurrent25.Create(UID);
+  c := TBrickletCurrent25.Create(UID, ipcon);
 
-  { Add device to IP connection }
-  ipcon.AddDevice(c);
-  { Don't use device before it is added to a connection }
+  { Connect to brickd }
+  ipcon.Connect(HOST, PORT);
+  { Don't use device before ipcon is connected }
 
   { Set Period for current callback to 1s (1000ms)
     Note: The current callback is only called every second if the
@@ -52,7 +52,6 @@ begin
 
   WriteLn('Press key to exit');
   ReadLn;
-  ipcon.Destroy;
 end;
 
 begin
