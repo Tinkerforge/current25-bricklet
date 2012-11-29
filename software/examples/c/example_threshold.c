@@ -9,28 +9,25 @@
 #define UID "ABCD" // Change to your UID
 
 // Callback for current greater than 5A
-void cb_reached(int16_t current) {
+void cb_reached(int16_t current, void *user_data) {
 	printf("Current is greater than 5A: %f\n", current/1000.0);
 }
 
 int main() {
-	// Create IP connection to brickd
+	// Create IP connection
 	IPConnection ipcon;
-	if(ipcon_create(&ipcon, HOST, PORT) < 0) {
-		fprintf(stderr, "Could not create connection\n");
-		exit(1);
-	}
+	ipcon_create(&ipcon);
 
 	// Create device object
 	Current25 c;
-	current25_create(&c, UID); 
+	current25_create(&c, UID, &ipcon); 
 
-	// Add device to IP connection
-	if(ipcon_add_device(&ipcon, &c) < 0) {
-		fprintf(stderr, "Could not connect to Bricklet\n");
+	// Connect to brickd
+	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
+		fprintf(stderr, "Could not connect\n");
 		exit(1);
 	}
-	// Don't use device before it is added to a connection
+	// Don't use device before ipcon is connected
 
 	// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 	current25_set_debounce_period(&c, 10000);
@@ -38,7 +35,8 @@ int main() {
 	// Register threshold reached callback to function cb_reached
 	current25_register_callback(&c,
 	                            CURRENT25_CALLBACK_CURRENT_REACHED,
-	                            cb_reached);
+	                            cb_reached,
+								NULL);
 
 	// Configure threshold for "greater than 5A" (unit is mA)
 	current25_set_current_callback_threshold(&c, '>', 5*1000, 0);
