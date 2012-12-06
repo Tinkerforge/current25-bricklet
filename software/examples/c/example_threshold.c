@@ -10,6 +10,8 @@
 
 // Callback for current greater than 5A
 void cb_reached(int16_t current, void *user_data) {
+	(void)user_data; // avoid unused parameter warning
+
 	printf("Current is greater than 5A: %f\n", current/1000.0);
 }
 
@@ -36,7 +38,7 @@ int main() {
 	current25_register_callback(&c,
 	                            CURRENT25_CALLBACK_CURRENT_REACHED,
 	                            cb_reached,
-								NULL);
+	                            NULL);
 
 	// Configure threshold for "greater than 5A" (unit is mA)
 	current25_set_current_callback_threshold(&c, '>', 5*1000, 0);

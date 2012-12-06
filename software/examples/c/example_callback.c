@@ -10,6 +10,8 @@
 
 // Callback function for current callback (parameter has unit mA)
 void cb_current(int16_t current, void *user_data) {
+	(void)user_data; // avoid unused parameter warning
+
 	printf("Current: %f A\n", current/1000.0);
 }
 
@@ -36,9 +38,9 @@ int main() {
 
 	// Register current callback to function cb_current
 	current25_register_callback(&c, 
-	                            CURRENT25_CALLBACK_CURRENT, 
-								cb_current,
-								NULL);
+	                            CURRENT25_CALLBACK_CURRENT,
+	                            cb_current,
+	                            NULL);
 
 	printf("Press key to exit\n");
 	getchar();
