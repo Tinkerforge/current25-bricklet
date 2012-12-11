@@ -39,7 +39,7 @@ int main() {
 	// Register current callback to function cb_current
 	current25_register_callback(&c, 
 	                            CURRENT25_CALLBACK_CURRENT,
-	                            cb_current,
+	                            (void *)cb_current,
 	                            NULL);
 
 	printf("Press key to exit\n");

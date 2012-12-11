@@ -37,7 +37,7 @@ int main() {
 	// Register threshold reached callback to function cb_reached
 	current25_register_callback(&c,
 	                            CURRENT25_CALLBACK_CURRENT_REACHED,
-	                            cb_reached,
+	                            (void *)cb_reached,
 	                            NULL);
 
 	// Configure threshold for "greater than 5A" (unit is mA)
