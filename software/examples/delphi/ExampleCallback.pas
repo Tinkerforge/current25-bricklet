@@ -12,7 +12,7 @@ type
     ipcon: TIPConnection;
     c: TBrickletCurrent25;
   public
-    procedure CurrentCB(sender: TObject; const current: smallint);
+    procedure CurrentCB(sender: TBrickletCurrent25; const current: smallint);
     procedure Execute;
   end;
 
@@ -25,7 +25,7 @@ var
   e: TExample;
 
 { Callback function for current callback (parameter has unit mA) }
-procedure TExample.CurrentCB(sender: TObject; const current: smallint);
+procedure TExample.CurrentCB(sender: TBrickletCurrent25; const current: smallint);
 begin
   WriteLn(Format('Current: %f A', [current/1000.0]));
 end;

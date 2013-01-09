@@ -12,7 +12,7 @@ type
     ipcon: TIPConnection;
     c: TBrickletCurrent25;
   public
-    procedure ReachedCB(sender: TObject; const current: smallint);
+    procedure ReachedCB(sender: TBrickletCurrent25; const current: smallint);
     procedure Execute;
   end;
 
@@ -25,7 +25,7 @@ var
   e: TExample;
 
 { Callback for current greater than 5A }
-procedure TExample.ReachedCB(sender: TObject; const current: smallint);
+procedure TExample.ReachedCB(sender: TBrickletCurrent25; const current: smallint);
 begin
   WriteLn(Format('Current is greater than 5A: %f', [current/1000.0]));
 end;

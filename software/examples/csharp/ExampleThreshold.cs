@@ -7,7 +7,7 @@ class Example
 	private static string UID = "ABC"; // Change to your UID
 
 	// Callback for current greater than 5A
-	static void ReachedCB(object sender, short current)
+	static void ReachedCB(BrickletCurrent25 sender, short current)
 	{
 		System.Console.WriteLine("Current is greater than 5A: " + current/1000.0 + "A");
 	}
