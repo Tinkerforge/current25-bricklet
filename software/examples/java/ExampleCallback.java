@@ -21,7 +21,7 @@ public class ExampleCallback {
 		c25.setCurrentCallbackPeriod(1000);
 
 		// Add and implement current listener (called if current changes)
-		c25.addListener(new BrickletCurrent25.CurrentListener() {
+		c25.addCurrentListener(new BrickletCurrent25.CurrentListener() {
 			public void current(short current) {
 				System.out.println("Current: " + current/1000.0 + " A");
 			}
