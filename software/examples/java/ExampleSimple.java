@@ -16,7 +16,7 @@ public class ExampleSimple {
 		// Don't use device before ipcon is connected
 
 		// Get current current (unit is mA)
-		short current = c25.getCurrent(); // Can throw IPConnection.TimeoutException
+		short current = c25.getCurrent(); // Can throw com.tinkerforge.TimeoutException
 
 		System.out.println("Current: " + current/1000.0 + " A");
 
