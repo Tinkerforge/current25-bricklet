@@ -23,5 +23,6 @@ echo "Current: $current A\n";
 
 echo "Press key to exit\n";
 fgetc(fopen('php://stdin', 'r'));
+$ipcon->disconnect();
 
 ?>

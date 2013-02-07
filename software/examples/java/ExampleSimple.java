@@ -21,5 +21,6 @@ public class ExampleSimple {
 		System.out.println("Current: " + current/1000.0 + " A");
 
 		System.console().readLine("Press key to exit\n");
+		ipcon.disconnect();
 	}
 }

@@ -22,3 +22,4 @@ puts "Current: #{current} A"
 
 puts 'Press key to exit'
 $stdin.gets
+ipcon.disconnect
