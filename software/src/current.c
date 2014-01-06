@@ -124,6 +124,8 @@ void is_over_current(const ComType com, const StandardMessage *sm) {
 }
 
 void constructor(void) {
+	_Static_assert(sizeof(BrickContext) <= BRICKLET_CONTEXT_MAX_SIZE, "BrickContext too big");
+
 	PIN_OVER_CURRENT.type = PIO_INPUT;
 	PIN_OVER_CURRENT.attribute = PIO_PULLUP;
     BA->PIO_Configure(&PIN_OVER_CURRENT, 1);
