@@ -6,9 +6,9 @@ require_once('Tinkerforge/BrickletCurrent25.php');
 use Tinkerforge\IPConnection;
 use Tinkerforge\BrickletCurrent25;
 
-$host = 'localhost';
-$port = 4223;
-$uid = '7tS'; // Change to your UID
+const HOST = 'localhost';
+const PORT = 4223;
+const UID = '7tS'; // Change to your UID
 
 // Callback for current greater than 5A
 function cb_reached($current)
@@ -17,9 +17,9 @@ function cb_reached($current)
 }
 
 $ipcon = new IPConnection(); // Create IP connection
-$c = new BrickletCurrent25($uid, $ipcon); // Create device object
+$c = new BrickletCurrent25(UID, $ipcon); // Create device object
 
-$ipcon->connect($host, $port); // Connect to brickd
+$ipcon->connect(HOST, PORT); // Connect to brickd
 // Don't use device before ipcon is connected
 
 // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
