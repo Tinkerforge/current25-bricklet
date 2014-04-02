@@ -14,7 +14,8 @@ my $c25 = Tinkerforge::BrickletCurrent25->new(&UID, $ipcon); # Create device obj
 sub cb_reached
 {
     my ($current) = @_;
-    print "\nCurrent is greater than 5A: ".$current/1000.0." \n";
+
+    print "Current is greater than 5A: ".$current/1000.0." \n";
 }
 
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
@@ -29,6 +30,6 @@ $c25->register_callback($c25->CALLBACK_CURRENT_REACHED, 'cb_reached');
 # Configure threshold for "greater than 5A" (unit is mA)
 $c25->set_current_callback_threshold('>', 5*1000, 0);
 
-print "\nPress any key to exit...\n";
+print "Press any key to exit...";
 <STDIN>;
 $ipcon->disconnect();
