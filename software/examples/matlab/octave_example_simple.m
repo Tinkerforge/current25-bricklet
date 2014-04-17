@@ -13,7 +13,7 @@ function octave_example_simple()
 
     % Get current current (unit is mA)
     current = vc.getCurrent();
-    fprintf('Current: %g A\n', current/1000.0);
+    fprintf("Current: %g A\n", current/1000.0);
 
     input("Press any key to exit...\n", "s");
     ipcon.disconnect();
