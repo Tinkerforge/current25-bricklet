@@ -1,6 +1,6 @@
 function octave_example_callback()
     more off;
-    
+
     HOST = "localhost";
     PORT = 4223;
     UID = "555"; % Change to your UID
@@ -12,7 +12,7 @@ function octave_example_callback()
     % Don't use device before ipcon is connected
 
     % Set Period for current callback to 1s (1000ms)
-    % Note: The callback is only called every second if the 
+    % Note: The callback is only called every second if the
     %       current has changed since the last call!
     vc.setCurrentCallbackPeriod(1000);
 
@@ -25,5 +25,13 @@ end
 
 % Callback function for current callback (parameter has unit mA)
 function cb_current(e)
-    fprintf("Current: %g A\n", e.current/1000.0);
+    fprintf("Current: %g A\n", short2int(e.current)/1000.0);
+end
+
+function int = short2int(short)
+    if compare_versions(version(), "3.8", "<=")
+        int = short.intValue();
+    else
+        int = short;
+    end
 end

@@ -1,6 +1,6 @@
 function octave_example_simple()
     more off;
-    
+
     HOST = "localhost";
     PORT = 4223;
     UID = "555"; % Change to your UID
@@ -13,8 +13,16 @@ function octave_example_simple()
 
     % Get current current (unit is mA)
     current = vc.getCurrent();
-    fprintf("Current: %g A\n", current/1000.0);
+    fprintf("Current: %g A\n", short2int(current)/1000.0);
 
     input("Press any key to exit...\n", "s");
     ipcon.disconnect();
+end
+
+function int = short2int(short)
+    if compare_versions(version(), "3.8", "<=")
+        int = short.intValue();
+    else
+        int = short;
+    end
 end

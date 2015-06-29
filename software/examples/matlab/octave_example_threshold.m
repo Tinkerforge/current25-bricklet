@@ -1,6 +1,6 @@
 function octave_example_threshold()
     more off;
-    
+
     HOST = "localhost";
     PORT = 4223;
     UID = "555"; % Change to your UID
@@ -26,5 +26,13 @@ end
 
 % Callback for current greater than 5A
 function cb_reached(e)
-    fprintf("Current is greater than 5A: %g \n", e.current/1000);
+    fprintf("Current is greater than 5A: %g \n", short2int(e.current)/1000);
+end
+
+function int = short2int(short)
+    if compare_versions(version(), "3.8", "<=")
+        int = short.intValue();
+    else
+        int = short;
+    end
 end
