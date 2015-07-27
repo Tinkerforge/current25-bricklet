@@ -5,7 +5,7 @@
 
 #define HOST "localhost"
 #define PORT 4223
-#define UID "ABCD" // Change to your UID
+#define UID "XYZ" // Change to your UID
 
 int main() {
 	// Create IP connection
@@ -13,8 +13,8 @@ int main() {
 	ipcon_create(&ipcon);
 
 	// Create device object
-	Current25 c;
-	current25_create(&c, UID, &ipcon); 
+	Current25 c25;
+	current25_create(&c25, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
@@ -25,8 +25,8 @@ int main() {
 
 	// Get current current (unit is mA)
 	int16_t current;
-	if(current25_get_current(&c, &current) < 0) {
-		fprintf(stderr, "Could not get value, probably timeout\n");
+	if(current25_get_current(&c25, &current) < 0) {
+		fprintf(stderr, "Could not get current, probably timeout\n");
 		exit(1);
 	}
 
