@@ -10,13 +10,13 @@ public class ExampleSimple {
 	//       might normally want to catch are described in the documentation
 	public static void main(String args[]) throws Exception {
 		IPConnection ipcon = new IPConnection(); // Create IP connection
-		BrickletCurrent25 c25 = new BrickletCurrent25(UID, ipcon); // Create device object
+		BrickletCurrent25 c = new BrickletCurrent25(UID, ipcon); // Create device object
 
 		ipcon.connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
 		// Get current current (unit is mA)
-		short current = c25.getCurrent(); // Can throw com.tinkerforge.TimeoutException
+		short current = c.getCurrent(); // Can throw com.tinkerforge.TimeoutException
 		System.out.println("Current: " + current/1000.0 + " A");
 
 		System.out.println("Press key to exit"); System.in.read();

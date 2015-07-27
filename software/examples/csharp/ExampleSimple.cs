@@ -9,13 +9,13 @@ class Example
 	static void Main()
 	{
 		IPConnection ipcon = new IPConnection(); // Create IP connection
-		BrickletCurrent25 c25 = new BrickletCurrent25(UID, ipcon); // Create device object
+		BrickletCurrent25 c = new BrickletCurrent25(UID, ipcon); // Create device object
 
 		ipcon.Connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
 		// Get current current (unit is mA)
-		short current = c25.GetCurrent();
+		short current = c.GetCurrent();
 		System.Console.WriteLine("Current: " + current/1000.0 + " A");
 
 		System.Console.WriteLine("Press enter to exit");

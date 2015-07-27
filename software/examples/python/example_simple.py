@@ -10,13 +10,13 @@ from tinkerforge.bricklet_current25 import Current25
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
-    c25 = Current25(UID, ipcon) # Create device object
+    c = Current25(UID, ipcon) # Create device object
 
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
     # Get current current (unit is mA)
-    current = c25.get_current()
+    current = c.get_current()
     print('Current: ' + str(current/1000.0) + ' A')
 
     raw_input('Press key to exit\n') # Use input() in Python 3
