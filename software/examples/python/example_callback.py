@@ -6,7 +6,7 @@ PORT = 4223
 UID = "XYZ" # Change to your UID
 
 from tinkerforge.ip_connection import IPConnection
-from tinkerforge.bricklet_current25 import Current25
+from tinkerforge.bricklet_current25 import BrickletCurrent25
 
 # Callback function for current callback (parameter has unit mA)
 def cb_current(current):
@@ -14,7 +14,7 @@ def cb_current(current):
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
-    c = Current25(UID, ipcon) # Create device object
+    c = BrickletCurrent25(UID, ipcon) # Create device object
 
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
