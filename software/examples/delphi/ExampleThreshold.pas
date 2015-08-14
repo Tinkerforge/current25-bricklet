@@ -12,22 +12,22 @@ type
     ipcon: TIPConnection;
     c: TBrickletCurrent25;
   public
-    procedure ReachedCB(sender: TBrickletCurrent25; const current: smallint);
+    procedure CurrentReachedCB(sender: TBrickletCurrent25; const current: smallint);
     procedure Execute;
   end;
 
 const
   HOST = 'localhost';
   PORT = 4223;
-  UID = '9yW'; { Change to your UID }
+  UID = 'XYZ'; { Change to your UID }
 
 var
   e: TExample;
 
-{ Callback for current greater than 5A }
-procedure TExample.ReachedCB(sender: TBrickletCurrent25; const current: smallint);
+{ Callback procedure for current greater than 5 A (parameter has unit mA) }
+procedure TExample.CurrentReachedCB(sender: TBrickletCurrent25; const current: smallint);
 begin
-  WriteLn(Format('Current is greater than 5A: %f', [current/1000.0]));
+  WriteLn(Format('Current: %f A', [current/1000.0]));
 end;
 
 procedure TExample.Execute;
@@ -45,10 +45,10 @@ begin
   { Get threshold callbacks with a debounce time of 10 seconds (10000ms) }
   c.SetDebouncePeriod(10000);
 
-  { Register threshold reached callback to procedure ReachedCB }
-  c.OnCurrentReached := {$ifdef FPC}@{$endif}ReachedCB;
+  { Register threshold reached callback to procedure CurrentReachedCB }
+  c.OnCurrentReached := {$ifdef FPC}@{$endif}CurrentReachedCB;
 
-  { Configure threshold for "greater than 5A" (unit is mA) }
+  { Configure threshold for "greater than 5 A" (unit is mA) }
   c.SetCurrentCallbackThreshold('>', 5*1000, 0);
 
   WriteLn('Press key to exit');
