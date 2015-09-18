@@ -19,12 +19,12 @@ ipcon.connect HOST, PORT # Connect to brickd
 # Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 c.set_debounce_period 10000
 
-# Register threshold reached callback for current greater than 5 A (parameter has unit mA)
+# Register current reached callback (parameter has unit mA)
 c.register_callback(BrickletCurrent25::CALLBACK_CURRENT_REACHED) do |current|
   puts "Current: #{current/1000.0} A"
 end
 
-# Configure threshold for "greater than 5 A" (unit is mA)
+# Configure threshold for current "greater than 5 A" (unit is mA)
 c.set_current_callback_threshold '>', 5*1000, 0
 
 puts 'Press key to exit'

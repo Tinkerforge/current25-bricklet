@@ -8,7 +8,7 @@ use Tinkerforge\BrickletCurrent25;
 
 const HOST = 'localhost';
 const PORT = 4223;
-const UID = '7tS'; // Change to your UID
+const UID = 'XYZ'; // Change to your UID
 
 $ipcon = new IPConnection(); // Create IP connection
 $c = new BrickletCurrent25(UID, $ipcon); // Create device object
@@ -17,9 +17,8 @@ $ipcon->connect(HOST, PORT); // Connect to brickd
 // Don't use device before ipcon is connected
 
 // Get current current (unit is mA)
-$current = $c->getCurrent() / 1000.0;
-
-echo "Current: $current A\n";
+$current = $c->getCurrent();
+echo "Current: " . $current/1000.0 . " A\n";
 
 echo "Press key to exit\n";
 fgetc(fopen('php://stdin', 'r'));

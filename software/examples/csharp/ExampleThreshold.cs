@@ -1,3 +1,4 @@
+using System;
 using Tinkerforge;
 
 class Example
@@ -6,10 +7,10 @@ class Example
 	private static int PORT = 4223;
 	private static string UID = "XYZ"; // Change to your UID
 
-	// Callback function for current greater than 5 A (parameter has unit mA)
+	// Callback function for current reached callback (parameter has unit mA)
 	static void CurrentReachedCB(BrickletCurrent25 sender, short current)
 	{
-		System.Console.WriteLine("Current: " + current/1000.0 + " A");
+		Console.WriteLine("Current: " + current/1000.0 + " A");
 	}
 
 	static void Main()
@@ -23,14 +24,14 @@ class Example
 		// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 		c.SetDebouncePeriod(10000);
 
-		// Register threshold reached callback to function CurrentReachedCB
+		// Register current reached callback to function CurrentReachedCB
 		c.CurrentReached += CurrentReachedCB;
 
-		// Configure threshold for "greater than 5 A" (unit is mA)
+		// Configure threshold for current "greater than 5 A" (unit is mA)
 		c.SetCurrentCallbackThreshold('>', 5*1000, 0);
 
-		System.Console.WriteLine("Press enter to exit");
-		System.Console.ReadLine();
+		Console.WriteLine("Press enter to exit");
+		Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }

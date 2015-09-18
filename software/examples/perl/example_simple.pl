@@ -17,6 +17,6 @@ $ipcon->connect(&HOST, &PORT); # Connect to brickd
 my $current = $c->get_current();
 print "Current: " . $current/1000.0 . " A\n";
 
-print "Press any key to exit...\n";
+print "Press key to exit\n";
 <STDIN>;
 $ipcon->disconnect();

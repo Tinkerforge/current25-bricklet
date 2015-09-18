@@ -7,7 +7,7 @@
 #define PORT 4223
 #define UID "XYZ" // Change to your UID
 
-// Callback function for current greater than 5 A (parameter has unit mA)
+// Callback function for current reached callback (parameter has unit mA)
 void cb_current_reached(int16_t current, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
@@ -33,13 +33,13 @@ int main(void) {
 	// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 	current25_set_debounce_period(&c, 10000);
 
-	// Register threshold reached callback to function cb_current_reached
+	// Register current reached callback to function cb_current_reached
 	current25_register_callback(&c,
 	                            CURRENT25_CALLBACK_CURRENT_REACHED,
 	                            (void *)cb_current_reached,
 	                            NULL);
 
-	// Configure threshold for "greater than 5 A" (unit is mA)
+	// Configure threshold for current "greater than 5 A" (unit is mA)
 	current25_set_current_callback_threshold(&c, '>', 5*1000, 0);
 
 	printf("Press key to exit\n");

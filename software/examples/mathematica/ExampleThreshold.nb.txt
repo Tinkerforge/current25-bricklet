@@ -3,28 +3,28 @@ LoadNETAssembly["Tinkerforge",NotebookDirectory[]<>"../../.."]
 
 host="localhost"
 port=4223
-uid="amb"(* Change to your UID *)
+uid="XYZ"(*Change to your UID*)
 
-(* Create IPConnection and device object *)
+(*Create IPConnection and device object*)
 ipcon=NETNew["Tinkerforge.IPConnection"]
-c25=NETNew["Tinkerforge.BrickletCurrent25",uid,ipcon]
+c=NETNew["Tinkerforge.BrickletCurrent25",uid,ipcon]
 ipcon@Connect[host,port]
 
-(* Get threshold callbacks with a debounce time of 1 second (1000ms) *)
-c25@SetDebouncePeriod[1000]
+(*Get threshold callbacks with a debounce time of 10 seconds (10000ms)*)
+c@SetDebouncePeriod[10000]
 
-(* Callback for current greater than 5A *)
+(*Callback function for current reached callback (parameter has unit mA)*)
 CurrentReachedCB[sender_,current_]:=
- Print["Current is greater than 5A: "<>ToString[N[Quantity[current,"mA"]]]]
-AddEventHandler[c25@CurrentReached,CurrentReachedCB]
+ Print["Current: "<>ToString[N[Quantity[current,"A/1000"]]]]
+AddEventHandler[c@CurrentReached,CurrentReachedCB]
 
-(* Configure threshold for "greater than 5A" (unit is mA) *)
+(*Configure threshold for current "greater than 5 A" (unit is mA)*)
 option=Tinkerforge`BrickletCurrent25`THRESHOLDUOPTIONUGREATER
-c25@SetCurrentCallbackThreshold[option,5*1000,0]
+c@SetCurrentCallbackThreshold[option,5*1000,0]
 
 Input["Click OK to exit"]
 
-(* Clean up *)
+(*Clean up*)
 ipcon@Disconnect[]
-ReleaseNETObject[c25]
+ReleaseNETObject[c]
 ReleaseNETObject[ipcon]

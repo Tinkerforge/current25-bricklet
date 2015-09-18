@@ -8,9 +8,9 @@ UID = "XYZ" # Change to your UID
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_current25 import BrickletCurrent25
 
-# Callback function for current greater than 5 A (parameter has unit mA)
+# Callback function for current reached callback (parameter has unit mA)
 def cb_current_reached(current):
-    print('Current: ' + str(current/1000.0) + ' A')
+    print("Current: " + str(current/1000.0) + " A")
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
@@ -22,11 +22,11 @@ if __name__ == "__main__":
     # Get threshold callbacks with a debounce time of 10 seconds (10000ms)
     c.set_debounce_period(10000)
 
-    # Register threshold reached callback to function cb_current_reached
+    # Register current reached callback to function cb_current_reached
     c.register_callback(c.CALLBACK_CURRENT_REACHED, cb_current_reached)
 
-    # Configure threshold for "greater than 5 A" (unit is mA)
-    c.set_current_callback_threshold('>', 5*1000, 0)
+    # Configure threshold for current "greater than 5 A" (unit is mA)
+    c.set_current_callback_threshold(">", 5*1000, 0)
 
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

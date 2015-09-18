@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     # Get current current (unit is mA)
     current = c.get_current()
-    print('Current: ' + str(current/1000.0) + ' A')
+    print("Current: " + str(current/1000.0) + " A")
 
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

@@ -1,3 +1,4 @@
+using System;
 using Tinkerforge;
 
 class Example
@@ -16,10 +17,10 @@ class Example
 
 		// Get current current (unit is mA)
 		short current = c.GetCurrent();
-		System.Console.WriteLine("Current: " + current/1000.0 + " A");
+		Console.WriteLine("Current: " + current/1000.0 + " A");
 
-		System.Console.WriteLine("Press enter to exit");
-		System.Console.ReadLine();
+		Console.WriteLine("Press enter to exit");
+		Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }

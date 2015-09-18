@@ -8,12 +8,12 @@ use Tinkerforge\BrickletCurrent25;
 
 const HOST = 'localhost';
 const PORT = 4223;
-const UID = '7tS'; // Change to your UID
+const UID = 'XYZ'; // Change to your UID
 
-// Callback for current greater than 5A
-function cb_reached($current)
+// Callback function for current reached callback (parameter has unit mA)
+function cb_currentReached($current)
 {
-    echo "Current is greater than 5A: " . $current / 1000.0 . "\n";
+    echo "Current: " . $current/1000.0 . " A\n";
 }
 
 $ipcon = new IPConnection(); // Create IP connection
@@ -25,10 +25,10 @@ $ipcon->connect(HOST, PORT); // Connect to brickd
 // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 $c->setDebouncePeriod(10000);
 
-// Register threshold reached callback to function cb_reached
-$c->registerCallback(BrickletCurrent25::CALLBACK_CURRENT_REACHED, 'cb_reached');
+// Register current reached callback to function cb_currentReached
+$c->registerCallback(BrickletCurrent25::CALLBACK_CURRENT_REACHED, 'cb_currentReached');
 
-// Configure threshold for "greater than 5A" (unit is mA)
+// Configure threshold for current "greater than 5 A" (unit is mA)
 $c->setCurrentCallbackThreshold('>', 5*1000, 0);
 
 echo "Press ctrl+c to exit\n";

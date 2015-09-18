@@ -30,16 +30,16 @@ int main(void) {
 	}
 	// Don't use device before ipcon is connected
 
-	// Set period for current callback to 1s (1000ms)
-	// Note: The current callback is only called every second
-	//       if the current has changed since the last call!
-	current25_set_current_callback_period(&c, 1000);
-
 	// Register current callback to function cb_current
 	current25_register_callback(&c,
 	                            CURRENT25_CALLBACK_CURRENT,
 	                            (void *)cb_current,
 	                            NULL);
+
+	// Set period for current callback to 1s (1000ms)
+	// Note: The current callback is only called every second
+	//       if the current has changed since the last call!
+	current25_set_current_callback_period(&c, 1000);
 
 	printf("Press key to exit\n");
 	getchar();

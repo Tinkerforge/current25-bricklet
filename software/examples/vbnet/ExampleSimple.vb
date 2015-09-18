@@ -1,3 +1,4 @@
+Imports System
 Imports Tinkerforge
 
 Module ExampleSimple
@@ -14,10 +15,10 @@ Module ExampleSimple
 
         ' Get current current (unit is mA)
         Dim current As Short = c.GetCurrent()
-        System.Console.WriteLine("Current: " + (current/1000.0).ToString() + " A")
+        Console.WriteLine("Current: " + (current/1000.0).ToString() + " A")
 
-        System.Console.WriteLine("Press key to exit")
-        System.Console.ReadLine()
+        Console.WriteLine("Press key to exit")
+        Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module
