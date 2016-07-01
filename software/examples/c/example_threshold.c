@@ -5,7 +5,7 @@
 
 #define HOST "localhost"
 #define PORT 4223
-#define UID "XYZ" // Change to your UID
+#define UID "XYZ" // Change XYZ to the UID of your Current25 Bricklet
 
 // Callback function for current reached callback (parameter has unit mA)
 void cb_current_reached(int16_t current, void *user_data) {

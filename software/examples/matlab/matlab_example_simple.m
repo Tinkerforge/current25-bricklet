@@ -4,7 +4,7 @@ function matlab_example_simple()
 
     HOST = 'localhost';
     PORT = 4223;
-    UID = 'XYZ'; % Change to your UID
+    UID = 'XYZ'; % Change XYZ to the UID of your Current25 Bricklet
 
     ipcon = IPConnection(); % Create IP connection
     c = handle(BrickletCurrent25(UID, ipcon), 'CallbackProperties'); % Create device object

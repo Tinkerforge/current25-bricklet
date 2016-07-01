@@ -5,7 +5,7 @@ use Tinkerforge::BrickletCurrent25;
 
 use constant HOST => 'localhost';
 use constant PORT => 4223;
-use constant UID => 'XYZ'; # Change to your UID
+use constant UID => 'XYZ'; # Change XYZ to the UID of your Current25 Bricklet
 
 # Callback subroutine for current callback (parameter has unit mA)
 sub cb_current

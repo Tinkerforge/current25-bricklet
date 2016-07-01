@@ -3,7 +3,7 @@ function octave_example_threshold()
 
     HOST = "localhost";
     PORT = 4223;
-    UID = "XYZ"; % Change to your UID
+    UID = "XYZ"; % Change XYZ to the UID of your Current25 Bricklet
 
     ipcon = java_new("com.tinkerforge.IPConnection"); % Create IP connection
     c = java_new("com.tinkerforge.BrickletCurrent25", UID, ipcon); % Create device object

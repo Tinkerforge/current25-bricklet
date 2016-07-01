@@ -5,7 +5,7 @@ class Example
 {
 	private static string HOST = "localhost";
 	private static int PORT = 4223;
-	private static string UID = "XYZ"; // Change to your UID
+	private static string UID = "XYZ"; // Change XYZ to the UID of your Current25 Bricklet
 
 	// Callback function for current reached callback (parameter has unit mA)
 	static void CurrentReachedCB(BrickletCurrent25 sender, short current)
