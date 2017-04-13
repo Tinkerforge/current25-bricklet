@@ -25,7 +25,7 @@ class Example
 		c.SetDebouncePeriod(10000);
 
 		// Register current reached callback to function CurrentReachedCB
-		c.CurrentReached += CurrentReachedCB;
+		c.CurrentReachedCallback += CurrentReachedCB;
 
 		// Configure threshold for current "greater than 5 A" (unit is mA)
 		c.SetCurrentCallbackThreshold('>', 5*1000, 0);
