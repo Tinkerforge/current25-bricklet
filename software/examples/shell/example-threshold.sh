@@ -10,7 +10,7 @@ tinkerforge call current25-bricklet $uid set-debounce-period 10000
 tinkerforge dispatch current25-bricklet $uid current-reached &
 
 # Configure threshold for current "greater than 5 A" (unit is mA)
-tinkerforge call current25-bricklet $uid set-current-callback-threshold greater 5000 0
+tinkerforge call current25-bricklet $uid set-current-callback-threshold threshold-option-greater 5000 0
 
 echo "Press key to exit"; read dummy
 
