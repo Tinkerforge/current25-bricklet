@@ -16,7 +16,7 @@ c@SetDebouncePeriod[10000]
 (*Callback function for current reached callback (parameter has unit mA)*)
 CurrentReachedCB[sender_,current_]:=
  Print["Current: "<>ToString[N[Quantity[current,"A/1000"]]]]
-AddEventHandler[c@CurrentReached,CurrentReachedCB]
+AddEventHandler[c@CurrentReachedCallback,CurrentReachedCB]
 
 (*Configure threshold for current "greater than 5 A" (unit is mA)*)
 option=Tinkerforge`BrickletCurrent25`THRESHOLDUOPTIONUGREATER

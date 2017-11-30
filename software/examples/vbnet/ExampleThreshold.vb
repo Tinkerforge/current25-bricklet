@@ -22,7 +22,7 @@ Module ExampleThreshold
         c.SetDebouncePeriod(10000)
 
         ' Register current reached callback to subroutine CurrentReachedCB
-        AddHandler c.CurrentReached, AddressOf CurrentReachedCB
+        AddHandler c.CurrentReachedCallback, AddressOf CurrentReachedCB
 
         ' Configure threshold for current "greater than 5 A" (unit is mA)
         c.SetCurrentCallbackThreshold(">"C, 5*1000, 0)
