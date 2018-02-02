@@ -8,7 +8,7 @@ UID = "XYZ" # Change XYZ to the UID of your Current25 Bricklet
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_current25 import BrickletCurrent25
 
-# Callback function for current callback (parameter has unit mA)
+# Callback function for current callback
 def cb_current(current):
     print("Current: " + str(current/1000.0) + " A")
 

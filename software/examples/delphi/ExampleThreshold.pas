@@ -24,7 +24,7 @@ const
 var
   e: TExample;
 
-{ Callback procedure for current reached callback (parameter has unit mA) }
+{ Callback procedure for current reached callback }
 procedure TExample.CurrentReachedCB(sender: TBrickletCurrent25; const current: smallint);
 begin
   WriteLn(Format('Current: %f A', [current/1000.0]));
@@ -48,7 +48,7 @@ begin
   { Register current reached callback to procedure CurrentReachedCB }
   c.OnCurrentReached := {$ifdef FPC}@{$endif}CurrentReachedCB;
 
-  { Configure threshold for current "greater than 5 A" (unit is mA) }
+  { Configure threshold for current "greater than 5 A" }
   c.SetCurrentCallbackThreshold('>', 5*1000, 0);
 
   WriteLn('Press key to exit');

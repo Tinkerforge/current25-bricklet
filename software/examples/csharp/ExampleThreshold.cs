@@ -7,7 +7,7 @@ class Example
 	private static int PORT = 4223;
 	private static string UID = "XYZ"; // Change XYZ to the UID of your Current25 Bricklet
 
-	// Callback function for current reached callback (parameter has unit mA)
+	// Callback function for current reached callback
 	static void CurrentReachedCB(BrickletCurrent25 sender, short current)
 	{
 		Console.WriteLine("Current: " + current/1000.0 + " A");
@@ -27,7 +27,7 @@ class Example
 		// Register current reached callback to function CurrentReachedCB
 		c.CurrentReachedCallback += CurrentReachedCB;
 
-		// Configure threshold for current "greater than 5 A" (unit is mA)
+		// Configure threshold for current "greater than 5 A"
 		c.SetCurrentCallbackThreshold('>', 5*1000, 0);
 
 		Console.WriteLine("Press enter to exit");

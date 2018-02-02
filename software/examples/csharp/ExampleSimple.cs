@@ -15,7 +15,7 @@ class Example
 		ipcon.Connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Get current current (unit is mA)
+		// Get current current
 		short current = c.GetCurrent();
 		Console.WriteLine("Current: " + current/1000.0 + " A");
 

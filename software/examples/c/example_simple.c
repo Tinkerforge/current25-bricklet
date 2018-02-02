@@ -23,7 +23,7 @@ int main(void) {
 	}
 	// Don't use device before ipcon is connected
 
-	// Get current current (unit is mA)
+	// Get current current
 	int16_t current;
 	if(current25_get_current(&c, &current) < 0) {
 		fprintf(stderr, "Could not get current, probably timeout\n");

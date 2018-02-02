@@ -36,7 +36,7 @@ begin
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
-  { Get current current (unit is mA) }
+  { Get current current }
   current := c.GetCurrent;
   WriteLn(Format('Current: %f A', [current/1000.0]));
 

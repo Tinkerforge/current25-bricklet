@@ -13,7 +13,7 @@ Module ExampleSimple
         ipcon.Connect(HOST, PORT) ' Connect to brickd
         ' Don't use device before ipcon is connected
 
-        ' Get current current (unit is mA)
+        ' Get current current
         Dim current As Short = c.GetCurrent()
         Console.WriteLine("Current: " + (current/1000.0).ToString() + " A")
 

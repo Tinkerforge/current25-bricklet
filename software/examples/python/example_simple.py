@@ -15,7 +15,7 @@ if __name__ == "__main__":
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
-    # Get current current (unit is mA)
+    # Get current current
     current = c.get_current()
     print("Current: " + str(current/1000.0) + " A")
 

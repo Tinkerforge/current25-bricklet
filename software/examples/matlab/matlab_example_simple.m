@@ -12,7 +12,7 @@ function matlab_example_simple()
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
-    % Get current current (unit is mA)
+    % Get current current
     current = c.getCurrent();
     fprintf('Current: %g A\n', current/1000.0);
 

@@ -22,12 +22,12 @@ Notebook[{
    RowBox[{"c", "@", RowBox[{"SetDebouncePeriod", "[", "10000", "]"}]}],
    RowBox[{"
 "}],
-   RowBox[{"(*", "Callback function for current reached callback (parameter has unit mA)", "*)"}],
+   RowBox[{"(*", "Callback function for current reached callback", "*)"}],
    RowBox[{RowBox[{"CurrentReachedCB", "[", RowBox[{"sender_", ",", "current_"}], "]"}], ":=", "\[IndentingNewLine]", RowBox[{"Print", "[", RowBox[{"\"\<Current: \>\"", "<>", RowBox[{"ToString", "[", RowBox[{"N", "[", RowBox[{"Quantity", "[", RowBox[{"current", ",", "\"\<A/1000\>\""}], "]"}], "]"}], "]"}]}], "]"}]}],
    RowBox[{"AddEventHandler", "[", RowBox[{RowBox[{"c", "@", "CurrentReachedCallback"}], ",", "CurrentReachedCB"}], "]"}],
    RowBox[{"
 "}],
-   RowBox[{"(*", "Configure threshold for current ", "\"\<greater than 5 A\>\"", " (unit is mA)", "*)"}],
+   RowBox[{"(*", "Configure threshold for current ", "\"\<greater than 5 A\>\"", "", "*)"}],
    RowBox[{"option", "=", "Tinkerforge`BrickletCurrent25`THRESHOLDUOPTIONUGREATER"}],
    RowBox[{"c", "@", RowBox[{"SetCurrentCallbackThreshold", "[", RowBox[{"option", ",", RowBox[{"5", "*", "1000"}], ",", "0"}], "]"}]}],
    RowBox[{"

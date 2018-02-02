@@ -16,7 +16,7 @@ $c = new BrickletCurrent25(UID, $ipcon); // Create device object
 $ipcon->connect(HOST, PORT); // Connect to brickd
 // Don't use device before ipcon is connected
 
-// Get current current (unit is mA)
+// Get current current
 $current = $c->getCurrent();
 echo "Current: " . $current/1000.0 . " A\n";
 

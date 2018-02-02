@@ -8,7 +8,7 @@ UID = "XYZ" # Change XYZ to the UID of your Current25 Bricklet
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_current25 import BrickletCurrent25
 
-# Callback function for current reached callback (parameter has unit mA)
+# Callback function for current reached callback
 def cb_current_reached(current):
     print("Current: " + str(current/1000.0) + " A")
 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     # Register current reached callback to function cb_current_reached
     c.register_callback(c.CALLBACK_CURRENT_REACHED, cb_current_reached)
 
-    # Configure threshold for current "greater than 5 A" (unit is mA)
+    # Configure threshold for current "greater than 5 A"
     c.set_current_callback_threshold(">", 5*1000, 0)
 
     raw_input("Press key to exit\n") # Use input() in Python 3

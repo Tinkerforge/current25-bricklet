@@ -6,7 +6,7 @@ Module ExampleThreshold
     Const PORT As Integer = 4223
     Const UID As String = "XYZ" ' Change XYZ to the UID of your Current25 Bricklet
 
-    ' Callback subroutine for current reached callback (parameter has unit mA)
+    ' Callback subroutine for current reached callback
     Sub CurrentReachedCB(ByVal sender As BrickletCurrent25, ByVal current As Short)
         Console.WriteLine("Current: " + (current/1000.0).ToString() + " A")
     End Sub
@@ -24,7 +24,7 @@ Module ExampleThreshold
         ' Register current reached callback to subroutine CurrentReachedCB
         AddHandler c.CurrentReachedCallback, AddressOf CurrentReachedCB
 
-        ' Configure threshold for current "greater than 5 A" (unit is mA)
+        ' Configure threshold for current "greater than 5 A"
         c.SetCurrentCallbackThreshold(">"C, 5*1000, 0)
 
         Console.WriteLine("Press key to exit")

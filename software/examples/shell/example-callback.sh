@@ -3,7 +3,7 @@
 
 uid=XYZ # Change XYZ to the UID of your Current25 Bricklet
 
-# Handle incoming current callbacks (parameter has unit mA)
+# Handle incoming current callbacks
 tinkerforge dispatch current25-bricklet $uid current &
 
 # Set period for current callback to 1s (1000ms)

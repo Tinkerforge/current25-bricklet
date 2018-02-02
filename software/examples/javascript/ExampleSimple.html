@@ -41,7 +41,7 @@
 
                 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
                     function (connectReason) {
-                        // Get current current (unit is mA)
+                        // Get current current
                         c.getCurrent(
                             function (current) {
                                 textArea.value += 'Current: ' + current/1000.0 + ' A\n';

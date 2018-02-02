@@ -19,14 +19,14 @@ ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
         // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
         c.setDebouncePeriod(10000);
 
-        // Configure threshold for current "greater than 5 A" (unit is mA)
+        // Configure threshold for current "greater than 5 A"
         c.setCurrentCallbackThreshold('>', 5*1000, 0);
     }
 );
 
 // Register current reached callback
 c.on(Tinkerforge.BrickletCurrent25.CALLBACK_CURRENT_REACHED,
-    // Callback function for current reached callback (parameter has unit mA)
+    // Callback function for current reached callback
     function (current) {
         console.log('Current: ' + current/1000.0 + ' A');
     }

@@ -16,7 +16,7 @@ ipcon.connect(HOST, PORT,
 
 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
     function (connectReason) {
-        // Get current current (unit is mA)
+        // Get current current
         c.getCurrent(
             function (current) {
                 console.log('Current: ' + current/1000.0 + ' A');

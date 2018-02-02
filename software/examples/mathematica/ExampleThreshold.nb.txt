@@ -13,12 +13,12 @@ ipcon@Connect[host,port]
 (*Get threshold callbacks with a debounce time of 10 seconds (10000ms)*)
 c@SetDebouncePeriod[10000]
 
-(*Callback function for current reached callback (parameter has unit mA)*)
+(*Callback function for current reached callback*)
 CurrentReachedCB[sender_,current_]:=
  Print["Current: "<>ToString[N[Quantity[current,"A/1000"]]]]
 AddEventHandler[c@CurrentReachedCallback,CurrentReachedCB]
 
-(*Configure threshold for current "greater than 5 A" (unit is mA)*)
+(*Configure threshold for current "greater than 5 A"*)
 option=Tinkerforge`BrickletCurrent25`THRESHOLDUOPTIONUGREATER
 c@SetCurrentCallbackThreshold[option,5*1000,0]
 

@@ -13,7 +13,7 @@ my $c = Tinkerforge::BrickletCurrent25->new(&UID, $ipcon); # Create device objec
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Don't use device before ipcon is connected
 
-# Get current current (unit is mA)
+# Get current current
 my $current = $c->get_current();
 print "Current: " . $current/1000.0 . " A\n";
 

@@ -7,7 +7,7 @@
 #define PORT 4223
 #define UID "XYZ" // Change XYZ to the UID of your Current25 Bricklet
 
-// Callback function for current callback (parameter has unit mA)
+// Callback function for current callback
 void cb_current(int16_t current, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 

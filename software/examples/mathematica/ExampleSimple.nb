@@ -18,7 +18,7 @@ Notebook[{
    RowBox[{"ipcon", "@", RowBox[{"Connect", "[", RowBox[{"host", ",", "port"}], "]"}]}],
    RowBox[{"
 "}],
-   RowBox[{"(*", "Get current current (unit is mA)", "*)"}],
+   RowBox[{"(*", "Get current current", "*)"}],
    RowBox[{"Print", "[", RowBox[{"\"\<Current: \>\"", "<>", RowBox[{"ToString", "[", RowBox[{"N", "[", RowBox[{"Quantity", "[", RowBox[{RowBox[{"c", "@", RowBox[{"GetCurrent", "[", "]"}]}], ",", "\"\<A/1000\>\""}], "]"}], "]"}], "]"}]}], "]"}],
    RowBox[{"
 "}],

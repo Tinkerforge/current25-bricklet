@@ -10,7 +10,7 @@ ipcon=NETNew["Tinkerforge.IPConnection"]
 c=NETNew["Tinkerforge.BrickletCurrent25",uid,ipcon]
 ipcon@Connect[host,port]
 
-(*Get current current (unit is mA)*)
+(*Get current current*)
 Print["Current: "<>ToString[N[Quantity[c@GetCurrent[],"A/1000"]]]]
 
 (*Clean up*)

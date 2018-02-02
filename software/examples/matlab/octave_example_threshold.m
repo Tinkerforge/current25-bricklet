@@ -17,14 +17,14 @@ function octave_example_threshold()
     % Register current reached callback to function cb_current_reached
     c.addCurrentReachedCallback(@cb_current_reached);
 
-    % Configure threshold for current "greater than 5 A" (unit is mA)
+    % Configure threshold for current "greater than 5 A"
     c.setCurrentCallbackThreshold(">", 5*1000, 0);
 
     input("Press key to exit\n", "s");
     ipcon.disconnect();
 end
 
-% Callback function for current reached callback (parameter has unit mA)
+% Callback function for current reached callback
 function cb_current_reached(e)
     fprintf("Current: %g A\n", java2int(e.current)/1000.0);
 end

@@ -10,7 +10,7 @@ ipcon=NETNew["Tinkerforge.IPConnection"]
 c=NETNew["Tinkerforge.BrickletCurrent25",uid,ipcon]
 ipcon@Connect[host,port]
 
-(*Callback function for current callback (parameter has unit mA)*)
+(*Callback function for current callback*)
 CurrentCB[sender_,current_]:=
  Print["Current: "<>ToString[N[Quantity[current,"A/1000"]]]]
 AddEventHandler[c@CurrentCallback,CurrentCB]

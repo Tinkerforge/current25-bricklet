@@ -7,7 +7,7 @@
 #define PORT 4223
 #define UID "XYZ" // Change XYZ to the UID of your Current25 Bricklet
 
-// Callback function for current reached callback (parameter has unit mA)
+// Callback function for current reached callback
 void cb_current_reached(int16_t current, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
@@ -39,7 +39,7 @@ int main(void) {
 	                            (void *)cb_current_reached,
 	                            NULL);
 
-	// Configure threshold for current "greater than 5 A" (unit is mA)
+	// Configure threshold for current "greater than 5 A"
 	current25_set_current_callback_threshold(&c, '>', 5*1000, 0);
 
 	printf("Press key to exit\n");

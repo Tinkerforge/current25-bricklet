@@ -20,14 +20,14 @@ public class ExampleThreshold {
 		// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 		c.setDebouncePeriod(10000);
 
-		// Add current reached listener (parameter has unit mA)
+		// Add current reached listener
 		c.addCurrentReachedListener(new BrickletCurrent25.CurrentReachedListener() {
 			public void currentReached(short current) {
 				System.out.println("Current: " + current/1000.0 + " A");
 			}
 		});
 
-		// Configure threshold for current "greater than 5 A" (unit is mA)
+		// Configure threshold for current "greater than 5 A"
 		c.setCurrentCallbackThreshold('>', (short)(5*1000), (short)0);
 
 		System.out.println("Press key to exit"); System.in.read();
