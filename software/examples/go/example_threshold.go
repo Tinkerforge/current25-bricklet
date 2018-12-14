@@ -22,7 +22,7 @@ func main() {
 	c.SetDebouncePeriod(10000)
 
 	c.RegisterCurrentReachedCallback(func(current int16) {
-		fmt.Printf("Current: %d A\n", float64(current)/1000.0)
+		fmt.Printf("Current: %f A\n", float64(current)/1000.0)
 	})
 
 	// Configure threshold for current "greater than 5 A".
