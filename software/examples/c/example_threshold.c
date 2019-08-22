@@ -36,7 +36,7 @@ int main(void) {
 	// Register current reached callback to function cb_current_reached
 	current25_register_callback(&c,
 	                            CURRENT25_CALLBACK_CURRENT_REACHED,
-	                            (void *)cb_current_reached,
+	                            (void (*)(void))cb_current_reached,
 	                            NULL);
 
 	// Configure threshold for current "greater than 5 A"
