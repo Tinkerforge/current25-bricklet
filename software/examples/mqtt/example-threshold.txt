@@ -3,10 +3,10 @@
 setup:
 	# Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 	publish '{"debounce": 10000}' to tinkerforge/request/current25_bricklet/XYZ/set_debounce_period
-	
+
 	# Handle incoming current reached callbacks
 	subscribe to tinkerforge/callback/current25_bricklet/XYZ/current_reached
 	publish '{"register": true}' to tinkerforge/register/current25_bricklet/XYZ/current_reached # Register current_reached callback
-	
+
 	# Configure threshold for current "greater than 5 A"
 	publish '{"option": "greater", "min": 5000, "max": 0}' to tinkerforge/request/current25_bricklet/XYZ/set_current_callback_threshold
